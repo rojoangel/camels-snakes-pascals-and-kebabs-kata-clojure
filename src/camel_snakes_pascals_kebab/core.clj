@@ -1,7 +1,10 @@
 (ns camel-snakes-pascals-kebab.core
-  (:gen-class))
+  (:gen-class)
+  (:require [clojure.string :as str]))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
+(defn camel-case
+  "Converts the input to camel case."
+  [input]
+  (def strings (str/split 
+    (str/replace input #"-" " ") #" "))
+  (str/join "" (concat (first strings) (map str/capitalize (drop 1 strings)))))
