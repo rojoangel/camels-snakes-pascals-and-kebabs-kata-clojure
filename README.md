@@ -1,36 +1,5 @@
-# camel_snakes_pascals_kebab
 
-FIXME: description
+# camels_snakes_pascals_and_kebab
+Write a code that change keywords between different naming conventions.
 
-## Installation
-
-Download from http://example.com/FIXME.
-
-## Usage
-
-FIXME: explanation
-
-    $ java -jar camel_snakes_pascals_kebab-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2017 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+The kata described in <https://gist.github.com/trikitrok/a97d330bacb1f56fe5ee027c12ff273a>
