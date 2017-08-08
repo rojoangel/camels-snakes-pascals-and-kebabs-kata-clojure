@@ -5,28 +5,30 @@
 (defn camel-case
   "Converts the input to camel case."
   [input]
-  (let [strings (str/split 
-    (str/replace input #"-" " ") #" ")]
-  (str/join "" (concat (first strings) (map str/capitalize (drop 1 strings))))))
+  (str/join "" (concat (str/lower-case (first input)) (map str/capitalize (drop 1 input)))))
 
 (defn snake-case
   "Converts the input to snake case."
   [input]
-  (str/replace input #"-" "_"))
+  (str/join "_" (map str/lower-case input)))
 
 (defn pascal-case
   "Converts the input to pascal case."
   [input]
-  (let [strings (str/split 
-    (str/replace input #"-" " ") #" ")]
-  (str/join "" (map str/capitalize strings))))
+  (str/join "" (map str/capitalize input)))
+
  (defn kebab-case
   "Converts the input to pascal case."
   [input]
-  input)
+  (str/join "-" (map str/lower-case input)))
+
+(defn split-words
+  "Split any format in words"
+  [some-format]
+  (clojure.string/split some-format #"-|_|(?=[A-Z])"))
 
 (defn format
   "Formats the input with a given transformer function"
   [input using transformer]
-  (keyword (let [unformatted (name input)]
-    ((resolve (symbol "camel-snakes-pascals-kebab.core" (name transformer))) unformatted))))
+  (let [unformatted (split-words (name input))]
+    (keyword ((resolve (symbol "camel-snakes-pascals-kebab.core" (name transformer))) unformatted))))

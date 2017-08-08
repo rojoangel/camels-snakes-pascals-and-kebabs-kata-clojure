@@ -10,4 +10,8 @@
   (testing "The input string formated in PascalCase"
     (is (= (format :hello-koko :using :pascal-case) :HelloKoko)))
   (testing "The input string formated in kebab-case"
-    (is (= (format :hello-koko :using :kebab-case) :hello-koko))))
+    (is (= (format :hello-koko :using :kebab-case) :hello-koko)))
+  (testing "The input string formated in kebab-case"
+    (is (= (format :helloKoko :using :kebab-case) :hello-koko)))
+  (testing "The input string formated in kebab-case"
+    (is (= (format :helloKitty :using :pascal-case) :HelloKitty))))
