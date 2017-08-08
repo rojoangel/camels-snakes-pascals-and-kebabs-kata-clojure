@@ -5,6 +5,6 @@
 (defn camel-case
   "Converts the input to camel case."
   [input]
-  (def strings (str/split 
-    (str/replace input #"-" " ") #" "))
-  (str/join "" (concat (first strings) (map str/capitalize (drop 1 strings)))))
+  (let [strings (str/split 
+    (str/replace input #"-" " ") #" ")]
+  (str/join "" (concat (first strings) (map str/capitalize (drop 1 strings))))))
