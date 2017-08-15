@@ -1,4 +1,4 @@
-(ns camel-snakes-pascals-kebab.transformation
+(ns camel-snakes-pascals-kebab.format
   (:require [clojure.string :as str]))
 
 (defn- camel-case
@@ -22,6 +22,6 @@
   (str/join "-" (map str/lower-case input)))
 
 (defn resolve-transforming-fn
-  "Returns the transforming function corresponding to the name passed in"
-  [transformer]
-  (resolve (symbol "camel-snakes-pascals-kebab.transformation" (name transformer))))
+  "Returns the transforming function corresponding to the format passed in"
+  [format]
+  (resolve (symbol "camel-snakes-pascals-kebab.format" (name format))))

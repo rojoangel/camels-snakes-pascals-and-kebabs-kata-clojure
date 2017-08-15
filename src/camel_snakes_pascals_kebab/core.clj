@@ -1,6 +1,6 @@
 (ns camel-snakes-pascals-kebab.core
   (:gen-class)
-  (:require [camel-snakes-pascals-kebab.transformation :as transform]
+  (:require [camel-snakes-pascals-kebab.format :as format]
             [clojure.string :as str]))
 
 (defn- split-words
@@ -9,7 +9,7 @@
   (str/split formatted-input #"-|_|(?=[A-Z])"))
 
 (defn format
-  "Formats the input with a given transformer function"
-  [input _ transformer]
+  "Formats the input to the given format name"
+  [input _ format]
   (let [words (split-words (name input))]
-    (keyword ((transform/resolve-transforming-fn transformer) words))))
+    (keyword ((format/resolve-transforming-fn format) words))))
