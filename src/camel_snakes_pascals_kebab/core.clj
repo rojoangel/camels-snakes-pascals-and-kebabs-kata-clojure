@@ -5,7 +5,7 @@
 (defn- camel-case
   "Converts the input to camel case."
   [input]
-  (str/join "" (concat (str/lower-case (first input)) (map str/capitalize (drop 1 input)))))
+  (str/join "" (concat (str/lower-case (first input)) (map str/capitalize (rest input)))))
 
 (defn- snake-case
   "Converts the input to snake case."
