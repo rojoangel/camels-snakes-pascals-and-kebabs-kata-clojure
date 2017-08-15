@@ -25,7 +25,7 @@
 (defn- split-words
   "Split any format in words"
   [some-format]
-  (clojure.string/split some-format #"-|_|(?=[A-Z])"))
+  (str/split some-format #"-|_|(?=[A-Z])"))
 
 (defn- resolve-transforming-fn
   "Returns the transforming function corresponding to the name passed in"
