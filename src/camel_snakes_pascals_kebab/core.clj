@@ -5,8 +5,8 @@
 
 (defn- split-words
   "Split any format in words"
-  [some-format]
-  (str/split some-format #"-|_|(?=[A-Z])"))
+  [formatted-input]
+  (str/split formatted-input #"-|_|(?=[A-Z])"))
 
 (defn format
   "Formats the input with a given transformer function"
