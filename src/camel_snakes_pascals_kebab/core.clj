@@ -2,27 +2,27 @@
   (:gen-class)
   (:require [clojure.string :as str]))
 
-(defn camel-case
+(defn- camel-case
   "Converts the input to camel case."
   [input]
   (str/join "" (concat (str/lower-case (first input)) (map str/capitalize (drop 1 input)))))
 
-(defn snake-case
+(defn- snake-case
   "Converts the input to snake case."
   [input]
   (str/join "_" (map str/lower-case input)))
 
-(defn pascal-case
+(defn- pascal-case
   "Converts the input to pascal case."
   [input]
   (str/join "" (map str/capitalize input)))
 
- (defn kebab-case
+(defn- kebab-case
   "Converts the input to pascal case."
   [input]
   (str/join "-" (map str/lower-case input)))
 
-(defn split-words
+(defn- split-words
   "Split any format in words"
   [some-format]
   (clojure.string/split some-format #"-|_|(?=[A-Z])"))
