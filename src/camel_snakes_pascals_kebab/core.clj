@@ -27,8 +27,13 @@
   [some-format]
   (clojure.string/split some-format #"-|_|(?=[A-Z])"))
 
+(defn- resolve-transforming-fn
+  "Returns the transforming function corresponding to the name passed in"
+  [transformer]
+  (resolve (symbol "camel-snakes-pascals-kebab.core" (name transformer))))
+
 (defn format
   "Formats the input with a given transformer function"
   [input _ transformer]
   (let [words (split-words (name input))]
-    (keyword ((resolve (symbol "camel-snakes-pascals-kebab.core" (name transformer))) words))))
+    (keyword ((resolve-transforming-fn transformer) words))))
