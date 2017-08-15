@@ -30,5 +30,5 @@
 (defn format
   "Formats the input with a given transformer function"
   [input _ transformer]
-  (let [unformatted (split-words (name input))]
-    (keyword ((resolve (symbol "camel-snakes-pascals-kebab.core" (name transformer))) unformatted))))
+  (let [words (split-words (name input))]
+    (keyword ((resolve (symbol "camel-snakes-pascals-kebab.core" (name transformer))) words))))
