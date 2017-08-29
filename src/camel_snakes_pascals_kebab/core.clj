@@ -8,12 +8,32 @@
   [formatted-input]
   (str/split formatted-input #"-|_|(?=[A-Z])"))
 
-(defn- create-container [input]
+(defmulti create-container map-entry?)
+
+(defmethod create-container true [input]
+  [])
+
+(defmethod create-container :default [input]
+  (empty input))
+
+#_(defn- create-container [input]
   (if (map-entry? input)
     []
     (empty input)))
 
-(defn format
+(defmulti format (fn [input _ _] [(coll? input) (keyword? input)]))
+
+(defmethod format [true false] [input _ format-style]
+  (into (create-container input) (map (fn [x] (format x _ format-style)) input)))
+
+(defmethod format [false true] [input _ format-style]
+  (let [words (split-words (name input))]
+    (keyword ((format/resolve-transforming-fn format-style) words))))
+
+(defmethod format :default [input _ format-style]
+  input)
+
+#_(defn format
   "Formats the input to the given format name"
   [input _ format-style]
   (cond
