@@ -8,10 +8,21 @@
   [formatted-input]
   (str/split formatted-input #"-|_|(?=[A-Z])"))
 
+(defn- create-container [input]
+  (if (map-entry? input)
+    []
+    (empty input)))
+
 (defn format
   "Formats the input to the given format name"
   [input _ format-style]
-  (if (coll? input)
-    (into (empty input) (map (fn [x] (format x _ format-style)) input))
+  (cond
+    (coll? input)
+    (into (create-container input) (map (fn [x] (format x _ format-style)) input))
+
+    (keyword? input)
     (let [words (split-words (name input))]
-      (keyword ((format/resolve-transforming-fn format-style) words)))))
+      (keyword ((format/resolve-transforming-fn format-style) words)))
+
+    :else
+    input))

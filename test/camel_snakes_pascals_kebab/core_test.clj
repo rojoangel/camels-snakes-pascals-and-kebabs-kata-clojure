@@ -20,4 +20,6 @@
   (testing "The input string formated in camelCase for a vector"
     (is (= (format [:hello-koko :hello_koko] :using :camel-case) [:helloKoko :helloKoko])))
   (testing "The input string formated in camelCase for a set"
-    (is (= (format #{:hello-koko :hello_koko} :using :camel-case) #{:helloKoko}))))
+    (is (= (format #{:hello-koko :hello_koko} :using :camel-case) #{:helloKoko})))
+  (testing "The input string formated in camelCase for a map"
+    (is (= (format {:hello-koko 1 :HelloLolo :hello_koko} :using :camel-case) {:helloKoko 1 :helloLolo :helloKoko}))))
