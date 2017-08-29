@@ -15,3 +15,9 @@
     (is (= (format :helloKoko :using :kebab-case) :hello-koko)))
   (testing "The input string formated in kebab-case"
     (is (= (format :helloKitty :using :pascal-case) :HelloKitty))))
+
+(deftest nested-structures-test
+  (testing "The input string formated in camelCase for a vector"
+    (is (= (format [:hello-koko :hello_koko] :using :camel-case) [:helloKoko :helloKoko])))
+  (testing "The input string formated in camelCase for a set"
+    (is (= (format #{:hello-koko :hello_koko} :using :camel-case) #{:helloKoko}))))

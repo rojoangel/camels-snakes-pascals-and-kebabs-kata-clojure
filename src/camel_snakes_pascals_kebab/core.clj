@@ -10,6 +10,8 @@
 
 (defn format
   "Formats the input to the given format name"
-  [input _ format]
-  (let [words (split-words (name input))]
-    (keyword ((format/resolve-transforming-fn format) words))))
+  [input _ format-style]
+  (if (coll? input)
+    (into (empty input) (map (fn [x] (format x _ format-style)) input))
+    (let [words (split-words (name input))]
+      (keyword ((format/resolve-transforming-fn format-style) words)))))
