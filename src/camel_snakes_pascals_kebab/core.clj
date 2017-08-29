@@ -21,12 +21,12 @@
     []
     (empty input)))
 
-(defmulti format (fn [input _ _] [(coll? input) (keyword? input)]))
+(defmulti format (fn [input _ _] (cond (coll? input) :coll (keyword? input) :keyword :else :other)))
 
-(defmethod format [true false] [input _ format-style]
+(defmethod format :coll [input _ format-style]
   (into (create-container input) (map (fn [x] (format x _ format-style)) input)))
 
-(defmethod format [false true] [input _ format-style]
+(defmethod format :keyword [input _ format-style]
   (let [words (split-words (name input))]
     (keyword ((format/resolve-transforming-fn format-style) words))))
 
